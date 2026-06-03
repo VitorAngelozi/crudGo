@@ -34,6 +34,7 @@ func HandlerCreateUser(ctx *gin.Context) {
 			VALUES ($1, $2)
 			RETURNING id
 		`
+	// Execute the query and scan the returned ID into the user struct
 	err := database.DB.QueryRow(query, user.Name, user.Email).Scan(&user.ID)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
