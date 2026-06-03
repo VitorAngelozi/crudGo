@@ -7,18 +7,21 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// User represents a user in the system
 type User struct {
 	ID    int    `json:"id"`
 	Name  string `json:"name"`
 	Email string `json:"email"`
 }
 
+// HandlerGetUser retrieves a user from the database
 func HandlerGetUser(ctx *gin.Context) {
 	ctx.JSON(200, gin.H{
 		"message": "Get User",
 	})
 }
 
+// HandlerCreateUser creates a new user in the database
 func HandlerCreateUser(ctx *gin.Context) {
 	var user User
 	if err := ctx.ShouldBindJSON(&user); err != nil {
