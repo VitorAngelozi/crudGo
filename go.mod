@@ -4,7 +4,7 @@ go 1.25.3
 
 require (
 	github.com/gin-gonic/gin v1.12.0
-	github.com/mattn/go-sqlite3 v1.14.44
+	github.com/lib/pq v1.12.3
 )
 
 require (
