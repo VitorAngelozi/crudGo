@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"crud/database"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -24,10 +25,18 @@ func HandlerCreateUser(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	ctx.JSON(http.StatusCreated, gin.H{
-		"message": "Create User",
-		"user":    user,
-	})
+	query := `
+			INSERT INTO users (name, email)
+			VALUES ($1, $2)
+			RETURNING id
+		`
+	err := database.DB.QueryRow(query, user.Name, user.Email).Scan(&user.ID)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	ctx.JSON(http.StatusCreated, user)
+
 }
 
 func HandlerUpdateUser(ctx *gin.Context) {
