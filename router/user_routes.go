@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// initializerUserRouter initializes the user routes for the application
 func initializerUserRouter(router *gin.Engine) {
 	v1 := router.Group("/api/v1")
 
