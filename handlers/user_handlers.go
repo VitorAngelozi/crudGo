@@ -44,6 +44,7 @@ func HandlerCreateUser(ctx *gin.Context) {
 
 }
 
+// HandlerUpdateUser updates an existing user in the database
 func HandlerUpdateUser(ctx *gin.Context) {
 	ctx.JSON(200, gin.H{
 		"message": "Update User",
