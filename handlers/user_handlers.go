@@ -28,6 +28,7 @@ func HandlerCreateUser(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	// Insert the user into the database and return the created user with its ID
 	query := `
 			INSERT INTO users (name, email)
 			VALUES ($1, $2)
